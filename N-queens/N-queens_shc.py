@@ -5,13 +5,13 @@ import time
 from queue import PriorityQueue
 
 class N_queens:
-	
+
 	def __init__(self,size):
 		self.size = size
 		self.state = []
 		self.heuristic = 0
 		self.tempstate = []
-	
+
 	def random_initial_State(self):
 		self.state = np.random.randint(self.size, size=self.size)
 		self.tempstate = self.state[:]
@@ -67,8 +67,9 @@ class Hill_climbing(N_queens):
 					self.moveQueen_simulate(self.decision[0],self.decision[1],1)
 					self.moveQueen_actual()
 					self.heuristic_calculator()
-				if time.time()>self.time:
+				if time.time()>self.time or not self.decision:
 					self.restart()
+					self.decision= []
 					break
 			if self.heuristic == 0:
 				break
